@@ -51,8 +51,24 @@ while (true) {
     const theName = rl.question('Which product do you want to add to cart? ');
     const theProduct = products.find((p) => p.name === theName);
     cart.push(theProduct);
-    console.log('Added! Number of items in your cart: ', cart.length);
-  } else {
+    console.log('Item is added! Number of items in your cart: ', cart.length);
+    if (cart.length >1){
+      console.log('Products in the cart:\n');
+    } else{
+      console.log('Product in the cart:\n');
+    }
+    //products.forEach((p) => {console.log('  - ', p.name)})
+    cart.forEach((item)=>  {
+      // console.log('-----------------------------')
+      console.log('Product name: ',item.name);
+      console.log('Product price: ',item.price);
+      console.log('Product description: ',item.description);
+      console.log('Product upccode: ',item.upcCode);
+      console.log('-------------------------------');
+
+    });
+  } 
+    else {
     console.log(`Invalid command: ${theCommand}`);
   }
-}
+    }
