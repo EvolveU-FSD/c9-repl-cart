@@ -10,7 +10,7 @@ let products = [
   },
   {
     name: 'fruit loops',
-    price: '$2',
+    price: '$3',
     description: 'best cereal ever',
     upcCode: '111yyy000',
   },
