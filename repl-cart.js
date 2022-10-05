@@ -1,6 +1,12 @@
 import rl from "readline-sync";
 
-let commands = ["listProducts", "showProduct", "add to cart", "show cart"];
+let commands = [
+  "listProducts",
+  "showProduct",
+  "add to cart",
+  "show cart",
+  "done",
+];
 let products = [
   {
     name: "hair spray",
@@ -35,12 +41,13 @@ let products = [
 ];
 
 let cart = [];
-
-while (true) {
+let doExit;
+while (!doExit) {
   console.log("\n----------------\nThe commands are:", commands);
   const theCommand = rl.question("What is your command? ");
-
-  if (theCommand === "listProducts") {
+  if (theCommand === "done") {
+    doExit = true;
+  } else if (theCommand === "listProducts") {
     console.log("Here is the list of products:");
     products.forEach((p) => {
       console.log("  - ", p.name);
@@ -50,10 +57,14 @@ while (true) {
     const theProduct = products.find((p) => p.name === theName);
     console.log("The product details are:\n", theProduct);
   } else if (theCommand === "add to cart") {
-    const theName = rl.question("Which product do you want to add to cart? ");
-    const theProduct = products.find((p) => p.name === theName);
-    cart.push(theProduct);
-    console.log("Added! Number of items in your cart: ", cart.length);
+    let moreItems;
+    do {
+      const theName = rl.question("Which product do you want to add to cart? ");
+      const theProduct = products.find((p) => p.name === theName);
+      cart.push(theProduct);
+      console.log("Added! Number of items in your cart: ", cart.length);
+      moreItems = rl.question("Do you want to add more items? (yes / no) ");
+    } while (moreItems != "no");
   } else if (theCommand === "show cart") {
     console.log("\n These are the products in your cart");
     cart.forEach((p) => {
