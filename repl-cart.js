@@ -35,7 +35,7 @@ let products = [
 ];
 
 let cart = [];
-let totalPrice = 0;
+
 
 while (true) {
   console.log('\n----------------\nThe commands are:', commands);
@@ -54,10 +54,11 @@ while (true) {
     cart.push(theProduct);
     console.log('Added! Number of items in your cart: ', cart.length);
   } else if (theCommand === 'show cart') {
-    console.log(cart) 
+    console.log(cart)
+    let totalPrice = 0; 
     for (let e of cart) {
-      totalPrice += e;
-    console.log(totalPrice)
+      const theProduct = products.find((s) => s.price === theName);
+
     }
   } else {
     console.log(`Invalid command: ${theCommand}`);
