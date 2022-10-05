@@ -36,7 +36,13 @@ let products = [
     name: "dunkaroos",
     price: "$2.5",
     description: "The best D you could get",
-    upcCode: 89dfns,
+    upcCode: "89dfns",
+  },
+  {
+    name: "crystal pepsi",
+    price: "$3.1",
+    description: "pepsi looks like water but taste like crap",
+    upcCode: "98nkasdf",
   },
 ];
 
@@ -64,4 +70,3 @@ while (true) {
     console.log(`Invalid command: ${theCommand}`);
   }
 }
-//This is another another another testing comment
