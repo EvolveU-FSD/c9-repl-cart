@@ -44,6 +44,12 @@ let products = [
     description: "pepsi looks like water but taste like crap",
     upcCode: "98nkasdf",
   },
+  {
+    name: "powder cola",
+    price: "$20",
+    description: "it is what you need for better coding",
+    upcCode: "23fsadf",
+  },
 ];
 
 let cart = [];
