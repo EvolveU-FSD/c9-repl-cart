@@ -10,7 +10,7 @@ let products = [
   },
   {
     name: "fruit loops",
-    price: "$2",
+    price: "$3",
     description: "best cereal ever",
     upcCode: "111yyy000",
   },
@@ -31,6 +31,12 @@ let products = [
     price: "$0.10",
     description: "Let's Go Blue Jays",
     upcCode: null,
+  },
+  {
+    name: "dunkaroos",
+    price: "$2.5",
+    description: "The best D you could get",
+    upcCode: 89dfns,
   },
 ];
 
