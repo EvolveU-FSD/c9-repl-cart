@@ -1,6 +1,12 @@
 import rl from 'readline-sync';
 
-let commands = ['list products', 'show product', 'add to cart'];
+let commands = [
+  'list products',
+  'show product',
+  'add to cart',
+  'show cart',
+  'remove from cart',
+];
 let products = [
   {
     name: 'hair spray',
@@ -21,7 +27,7 @@ let products = [
     upcCode: '333398988',
   },
   {
-    name: 'bananananananas',
+    name: 'bananas',
     price: '$29',
     description: 'Yellow and Yummy',
     upcCode: '4011',
@@ -42,17 +48,41 @@ while (true) {
 
   if (theCommand === 'list products') {
     console.log('Here is the list of products:');
-    products.forEach((p) => {console.log('  - ', p.name)})
+    products.forEach((p) => {
+      console.log('  - ', p.name);
+    });
   } else if (theCommand === 'show product') {
-    const theName = rl.question('Which product do you want to see? ');
+    const theName = rl.question('\nWhich product do you want to see? ');
     const theProduct = products.find((p) => p.name === theName);
     console.log('The product details are:\n', theProduct);
   } else if (theCommand === 'add to cart') {
-    const theName = rl.question('Which product do you want to add to cart? ');
+    const theName = rl.question('\nWhich product do you want to add to cart? ');
     const theProduct = products.find((p) => p.name === theName);
     cart.push(theProduct);
-    console.log('Added! Number of items in your cart: ', cart.length);
+    console.log(
+      `\n${theProduct.name} Added!` + '\nNumber of items in your cart: ',
+      cart.length
+    );
+  } else if (theCommand === 'show cart') {
+    if (cart.length === 0) {
+      console.log('\nYour cart is empty!');
+    } else {
+      console.log('\nHere is your cart - \n');
+      cart.forEach((theCart) => {
+        console.log(theCart.name);
+      });
+    }
+  } else if (theCommand === 'remove from cart') {
+    console.log('\nWhat do you want to remove? \n ');
+    cart.forEach((theCart) => {
+      console.log(theCart.name);
+    });
+
+    const itemToRemove = rl.question('\nSelect the item to remove ');
+    const trashCart = cart.find((p) => p.name === itemToRemove);
+    cart.shift(trashCart);
+    console.log(`\n${trashCart.name} removed! `);
   } else {
-    console.log(`Invalid command: ${theCommand}`);
+    console.log(`Invalid command: ${commands}`);
   }
 }
