@@ -1,6 +1,7 @@
 import rl from 'readline-sync';
 
-let commands = ['list products', 'show product', 'add to cart', 'show cart'];
+let finalPrice = [0, 0]
+let commands = ['list products', 'show product', 'add to cart', 'show cart', 'checkout'];
 let products = [
   {
     name: 'hair spray',
@@ -21,7 +22,7 @@ let products = [
     upcCode: '333398988',
   },
   {
-    name: 'bananananananas',
+    name: 'bananas',
     price: '$29',
     description: 'Yellow and Yummy',
     upcCode: '4011',
@@ -37,7 +38,7 @@ let products = [
 let cart = [];
 
 while (true) {
-  console.log('\n----------------\nThe commands are:', commands);
+  console.log('\n----------------\nThe commands are: ', commands);
   const theCommand = rl.question('What is your command? ');
 
   if (theCommand === 'list products') {
@@ -58,7 +59,29 @@ while (true) {
     } else {
       console.log('Your cart is empty.')
     }
-  } else {
+  } else if (theCommand === 'checkout') {
+     for (let i = 0; i < cart.length; i++) {
+      if(cart[i].name === 'hair spray') {
+        finalPrice[0] = finalPrice[0] + 5
+      } else if(cart[i] === 'fruit loops') {
+        finalPrice[0] = finalPrice[0]+ 2
+      } else if(cart[i].name === 'tweezers') {
+        finalPrice[0] = finalPrice[0] + 1
+      } else if(cart[i].name === 'bananas') {
+        finalPrice[0] = finalPrice[0] + 29
+      }else if(cart[i].name === 'baseball cards') {
+        finalPrice[1] = finalPrice[1] + 1
+        if(finalPrice[1] === 10) {
+          finalPrice[1] = finalPrice[1] - 10
+          finalPrice[0] = finalPrice[0] + 1
+        }
+        
+      }}
+  
+    console.log(`Your final price is $${finalPrice[0]}.${finalPrice[1]}0, thank you for shopping! `)
+    break
+  } 
+  else {
     console.log(`Invalid command: ${theCommand}`);
   }
 }
