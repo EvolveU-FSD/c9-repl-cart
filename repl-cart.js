@@ -1,52 +1,52 @@
 import rl from "readline-sync";
 
-let commands = ["list products", "show product", "add to cart"];
+let commands = ["list products", "show product", "add to cart", "show cart"];
 let products = [
   {
     name: "hair spray",
-    price: "$5",
+    price: 5,
     description: "keep your hair straight & tidy",
     upcCode: "123xyz567",
   },
   {
     name: "fruit loops",
-    price: "$3",
+    price: 3,
     description: "best cereal ever",
     upcCode: "111yyy000",
   },
   {
     name: "tweezers",
-    price: "$1",
+    price: 1,
     description: "Tweek, OW!",
     upcCode: "333398988",
   },
   {
     name: "bananananananas",
-    price: "$29",
+    price: 29,
     description: "Yellow and Yummy",
     upcCode: "4011",
   },
   {
     name: "baseball cards",
-    price: "$0.10",
+    price: 0.1,
     description: "Let's Go Blue Jays",
     upcCode: null,
   },
   {
     name: "dunkaroos",
-    price: "$2.5",
+    price: 2.5,
     description: "The best D you could get",
     upcCode: "89dfns",
   },
   {
     name: "crystal pepsi",
-    price: "$3.1",
+    price: 3.1,
     description: "pepsi looks like water but taste like crap",
     upcCode: "98nkasdf",
   },
   {
     name: "powder cola",
-    price: "$20",
+    price: 20,
     description: "it is what you need for better coding",
     upcCode: "23fsadf",
   },
@@ -72,6 +72,16 @@ while (true) {
     const theProduct = products.find((p) => p.name === theName);
     cart.push(theProduct);
     console.log("Added! Number of items in your cart: ", cart.length);
+  } else if (theCommand === "show cart") {
+    console.log("Number of items in your cart: ", cart.length);
+    // console.log("List of items in your cart: ", cart);
+    const netTotal = cart.reduce((accumulator, object) => {
+      return accumulator + object.price;
+    }, 0);
+    console.log("Total amount: $", netTotal);
+    cart.forEach((p) => {
+      console.log("  - ", p.name, " $", p.price);
+    });
   } else {
     console.log(`Invalid command: ${theCommand}`);
   }
