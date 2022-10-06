@@ -1,6 +1,6 @@
 import rl from 'readline-sync';
 
-let commands = ['list products', 'show product', 'add to cart','show cart'];
+let commands = ['list products', 'show product', 'add to cart','show cart','remove last item from cart'];
 let products = [
   {
     name: 'hair spray',
@@ -21,7 +21,7 @@ let products = [
     upcCode: '333398988',
   },
   {
-    name: 'bananananananas',
+    name: 'bananas',
     price: 29,
     description: 'Yellow and Yummy',
     upcCode: '4011',
@@ -35,7 +35,6 @@ let products = [
 ];
 
 let cart = [];
-let currency = '$'
 
 while (true) {
   console.log('\n----------------\nThe commands are:', commands);
@@ -49,17 +48,26 @@ while (true) {
     const theProduct = products.find((p) => p.name === theName);
     console.log('The product details are:\n', theProduct);
   } else if (theCommand === 'add to cart') {
+    console.log("\nHere are the list of the name of the products you can buy from our store:")
+    let productNameList = products.map(({name})=>(name))
+    console.log(productNameList)
     const theName = rl.question('Which product do you want to add to cart? ');
     const theProduct = products.find((p) => p.name === theName);
     cart.push(theProduct);
     console.log('Added! Number of items in your cart: ', cart.length);
   } else if (theCommand === 'show cart') {
-    console.log(cart)
-    let totalPrice = 0; 
-    for (let e of cart) {
-      const theProduct = products.find((s) => s.price === theName);
-
-    }
+    let cartTotalPrice = 0
+    for (let i = 0; i < cart.length;i++) 
+    cartTotalPrice = cartTotalPrice + cart[i].price
+    let cartNameList = cart.map(({name})=>(name))
+    console.log(cartNameList)
+    console.log(`The total price is $${cartTotalPrice}`)
+    // console.log(cartTotalName)
+  } else if (theCommand === 'remove last item from cart') {
+    let cartLastItemRemove = cart.pop()
+    cartLastItemRemove
+    let cartNameList = cart.map(({name})=>(name))
+    console.log(`Here are the items in your cart: ${cartNameList}`)
   } else {
     console.log(`Invalid command: ${theCommand}`);
   }
