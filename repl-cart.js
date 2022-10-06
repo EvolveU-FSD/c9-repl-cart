@@ -46,9 +46,15 @@ let products = [
   },
   {
     name: "powder cola",
-    price: 20,
+    price: 150,
     description: "it is what you need for better coding",
     upcCode: "23fsadf",
+  },
+  {
+    name: "blinker fluid",
+    price: 35,
+    description: "help your blinker running properly",
+    upcCode: "7hdtg",
   },
 ];
 
@@ -68,6 +74,9 @@ while (true) {
     const theProduct = products.find((p) => p.name === theName);
     console.log("The product details are:\n", theProduct);
   } else if (theCommand === "add to cart") {
+    products.forEach((p) => {
+      console.log(" $", p.price, " - ", p.name);
+    });
     const theName = rl.question("Which product do you want to add to cart? ");
     const theProduct = products.find((p) => p.name === theName);
     cart.push(theProduct);
@@ -81,13 +90,14 @@ while (true) {
     cart.forEach((p) => {
       console.log("  - ", p.name, " $", p.price);
     });
+    console.log("\n");
     const theCart = rl.question(
       `Enter any key to continue? or Enter "empty" to clear your cart? `
     );
     if (theCart === "empty") {
       cart.splice(0, cart.length);
-      console.log(/n/);
-      console.log(/n/);
+      console.log("\n");
+      console.log("\n");
       console.log("Cart has been empty!");
     }
   } else {
