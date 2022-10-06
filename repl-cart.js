@@ -53,7 +53,7 @@ let products = [
 ];
 
 let cart = [];
-
+let netTotal;
 while (true) {
   console.log("\n----------------\nThe commands are:", commands);
   const theCommand = rl.question("What is your command? ");
@@ -74,14 +74,22 @@ while (true) {
     console.log("Added! Number of items in your cart: ", cart.length);
   } else if (theCommand === "show cart") {
     console.log("Number of items in your cart: ", cart.length);
-    // console.log("List of items in your cart: ", cart);
-    const netTotal = cart.reduce((accumulator, object) => {
-      return accumulator + object.price;
+    netTotal = cart.reduce((accu, object) => {
+      return accu + object.price;
     }, 0);
-    console.log("Total amount: $", netTotal);
+    console.log("Total amount:  $", netTotal);
     cart.forEach((p) => {
       console.log("  - ", p.name, " $", p.price);
     });
+    const theCart = rl.question(
+      `Enter any key to continue? or Enter "empty" to clear your cart? `
+    );
+    if (theCart === "empty") {
+      cart.splice(0, cart.length);
+      console.log(/n/);
+      console.log(/n/);
+      console.log("Cart has been empty!");
+    }
   } else {
     console.log(`Invalid command: ${theCommand}`);
   }
