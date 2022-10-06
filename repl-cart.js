@@ -22,20 +22,20 @@ let products = [
   },
   {
     name: 'bananananananas',
-    price: '$29',
+    price: 29,
     description: 'Yellow and Yummy',
     upcCode: '4011',
   },
   {
     name: 'baseball cards',
-    price: '$0.10',
+    price: 0.10,
     description: "Let's Go Blue Jays",
     upcCode: null,
   },
 ];
 
 let cart = [];
-
+let currency = '$'
 
 while (true) {
   console.log('\n----------------\nThe commands are:', commands);
