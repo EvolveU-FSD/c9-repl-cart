@@ -4,6 +4,7 @@ let commands = [
   "list products",
   "show product",
   "add to cart",
+  "show cart",
   "show total price",
 ];
 let products = [
@@ -58,13 +59,30 @@ while (true) {
     console.log("The product details are:\n", theProduct);
   } else if (theCommand === "add to cart") {
     const theName = rl.question("Which product do you want to add to cart? ");
-    const theProduct = products.find((p) => p.name === theName);
-    cart.push(theProduct);
-    console.log("Added! Number of items in your cart: ", cart.length);
+    if (products.find((p) => p.name === theName)) {
+      const theProduct = products.find((p) => p.name === theName);
+      cart.push(theProduct);
+      console.log("Added! Number of items in your cart: ", cart.length);
+    } else {
+      console.log("Invalid product! Try Again!");
+    }
+  }
+  //show cart
+  else if (theCommand === "show cart") {
+    if (cart.length === 0) {
+      console.log("Your cart is empty!");
+    } else {
+      console.log("\n");
+      console.log("Here is your cart: ");
+      cart.forEach((i) => {
+        console.log("\n", i);
+      });
+    }
   }
   // Show total price
   else if (theCommand === "show total price") {
     totalPrice = 0;
+
     for (let i = 0; i < cart.length; i++) {
       totalPrice = totalPrice + parseInt(cart[i].price.replace("$", ""));
     }
